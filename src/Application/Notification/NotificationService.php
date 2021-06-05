@@ -5,20 +5,21 @@ namespace Ddd\Application\Notification;
 use Ddd\Application\EventStore;
 use JMS\Serializer\SerializerBuilder;
 use Ddd\Domain\Event\StoredEvent;
+use JMS\Serializer\Serializer;
+
 
 class NotificationService
 {
-    private $serializer;
-    private $eventStore;
-    private $publishedMessageTracker;
-    private $messageProducer;
+    private Serializer $serializer;
+    private EventStore $eventStore;
+    private PublishedMessageTracker $publishedMessageTracker;
+    private MessageProducer $messageProducer;
 
     public function __construct(
         EventStore $anEventStore,
         PublishedMessageTracker $aPublishedMessageTracker,
         MessageProducer $aMessageProducer
-    )
-    {
+    ) {
         $this->eventStore = $anEventStore;
         $this->publishedMessageTracker = $aPublishedMessageTracker;
         $this->messageProducer = $aMessageProducer;
@@ -47,8 +48,7 @@ class NotificationService
                 $lastPublishedNotification = $this->publish($exchangeName, $notification, $messageProducer);
                 $publishedMessages++;
             }
-        } catch(\Exception $e) {
-
+        } catch (\Exception $e) {
         }
 
         $this->trackMostRecentPublishedMessage($publishedMessageTracker, $exchangeName, $lastPublishedNotification);
@@ -105,25 +105,28 @@ class NotificationService
         return $notification;
     }
 
+
     /**
      * @return \JMS\Serializer\Serializer
      */
-    private function serializer()
+    private function serializer(): Serializer
     {
         if (null === $this->serializer) {
-            $this->serializer =
-                SerializerBuilder::create()
-                    ->addMetadataDir(__DIR__ . '/../../Infrastructure/Application/Serialization/JMS/Config')
-                    ->setCacheDir(__DIR__ . '/../../../var/cache/jms-serializer')
-                ->build()
-            ;
+            //$this->serializer = new JsonSerializer();
+            $this->serializer = SerializerBuilder::create()
+                ->addMetadataDir(__DIR__.'/../../Infrastructure/Application/Serialization/JMS/Config')
+                ->setCacheDir(__DIR__.'/../../../var/cache/jms-serializer')
+                ->build();
         }
 
         return $this->serializer;
     }
 
-    private function trackMostRecentPublishedMessage(PublishedMessageTracker $publishedMessageTracker, $exchangeName, $notification)
-    {
+    private function trackMostRecentPublishedMessage(
+        PublishedMessageTracker $publishedMessageTracker,
+        $exchangeName,
+        $notification
+    ) {
         $publishedMessageTracker->trackMostRecentPublishedMessage($exchangeName, $notification);
     }
 }

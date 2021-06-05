@@ -9,29 +9,29 @@ class StoredEvent implements DomainEvent
     /**
      * @var int
      */
-    private $eventId;
+    private int $eventId;
 
     /**
      * @var string
      */
-    private $eventBody;
+    private string $eventBody;
 
     /**
      * @var \DateTime
      */
-    private $occurredOn;
+    private \DateTime $occurredOn;
 
     /**
      * @var string
      */
-    private $typeName;
+    private string $typeName;
 
     /**
-     * @param string $aTypeName
-     * @param \DateTime $anOccurredOn
-     * @param string $anEventBody
+     * @param  string  $aTypeName
+     * @param  \DateTime  $anOccurredOn
+     * @param  string  $anEventBody
      */
-    public function __construct($aTypeName, \DateTime $anOccurredOn, $anEventBody)
+    public function __construct(string $aTypeName, \DateTime $anOccurredOn, string $anEventBody)
     {
         $this->eventBody = $anEventBody;
         $this->typeName = $aTypeName;
@@ -41,7 +41,7 @@ class StoredEvent implements DomainEvent
     /**
      * @return string
      */
-    public function eventBody()
+    public function eventBody(): string
     {
         return $this->eventBody;
     }
@@ -49,7 +49,7 @@ class StoredEvent implements DomainEvent
     /**
      * @return int
      */
-    public function eventId()
+    public function eventId(): int
     {
         return $this->eventId;
     }
@@ -57,7 +57,7 @@ class StoredEvent implements DomainEvent
     /**
      * @return string
      */
-    public function typeName()
+    public function typeName(): string
     {
         return $this->typeName;
     }
@@ -65,7 +65,7 @@ class StoredEvent implements DomainEvent
     /**
      * @return \DateTime
      */
-    public function occurredOn()
+    public function occurredOn(): \DateTime
     {
         return $this->occurredOn;
     }

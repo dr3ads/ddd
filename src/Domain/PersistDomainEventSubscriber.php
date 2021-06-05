@@ -2,6 +2,7 @@
 
 namespace Ddd\Domain;
 
+use Ddd\Application\EventStore;
 use Ddd\Domain\Event\PublishableDomainEvent;
 
 class PersistDomainEventSubscriber implements DomainEventSubscriber
@@ -9,7 +10,7 @@ class PersistDomainEventSubscriber implements DomainEventSubscriber
     /**
      * @var EventStore
      */
-    private $eventStore;
+    private EventStore $eventStore;
 
     public function __construct($anEventStore)
     {
@@ -21,7 +22,11 @@ class PersistDomainEventSubscriber implements DomainEventSubscriber
         $this->eventStore->append($aDomainEvent);
     }
 
-    public function isSubscribedTo($aDomainEvent)
+    /**
+     * @param  \Ddd\Domain\DomainEvent  $aDomainEvent
+     * @return bool
+     */
+    public function isSubscribedTo(DomainEvent $aDomainEvent): bool
     {
         return $aDomainEvent instanceof PublishableDomainEvent;
     }

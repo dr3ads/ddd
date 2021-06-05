@@ -14,7 +14,7 @@ class DoctrineSession implements TransactionalSession
     /**
      * @var EntityManager
      */
-    private $entityManager;
+    private EntityManager $entityManager;
 
     /**
      * @param EntityManager $entityManager

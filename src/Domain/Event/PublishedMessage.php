@@ -7,23 +7,23 @@ class PublishedMessage
     /**
      * @var int
      */
-    private $mostRecentPublishedMessageId;
+    private int $mostRecentPublishedMessageId;
 
     /**
      * @var int
      */
-    private $trackerId;
+    private int $trackerId;
 
     /**
      * @var string
      */
-    private $typeName;
+    private string $typeName;
 
     /**
      * @param string $aTypeName
      * @param int $aMostRecentPublishedMessageId
      */
-    public function __construct($aTypeName, $aMostRecentPublishedMessageId)
+    public function __construct(string $aTypeName, int $aMostRecentPublishedMessageId)
     {
         $this->mostRecentPublishedMessageId = $aMostRecentPublishedMessageId;
         $this->typeName = $aTypeName;
@@ -32,7 +32,7 @@ class PublishedMessage
     /**
      * @return int
      */
-    public function mostRecentPublishedMessageId()
+    public function mostRecentPublishedMessageId(): int
     {
         return $this->mostRecentPublishedMessageId;
     }
@@ -40,7 +40,7 @@ class PublishedMessage
     /**
      * @param int $maxId
      */
-    public function updateMostRecentPublishedMessageId($maxId)
+    public function updateMostRecentPublishedMessageId(int $maxId)
     {
         $this->mostRecentPublishedMessageId = $maxId;
     }

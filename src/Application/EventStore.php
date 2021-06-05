@@ -10,7 +10,7 @@ interface EventStore
      * @param DomainEvent $aDomainEvent
      * @return mixed
      */
-    public function append($aDomainEvent);
+    public function append(DomainEvent $aDomainEvent);
 
     /**
      * @param $anEventId

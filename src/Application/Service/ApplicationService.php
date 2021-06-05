@@ -9,8 +9,8 @@ namespace Ddd\Application\Service;
 interface ApplicationService
 {
     /**
-     * @param $request
+     * @param  \Ddd\Application\Service\ServiceRequest|null  $request
      * @return mixed
      */
-    public function execute($request = null);
+    public function execute(?ServiceRequest $request);
 }

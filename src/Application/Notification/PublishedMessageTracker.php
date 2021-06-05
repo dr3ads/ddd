@@ -12,7 +12,7 @@ interface PublishedMessageTracker
 
     /**
      * @param $aTypeName
-     * @param StoredEvent $notification
+     * @param \Ddd\Domain\Event\StoredEvent $notification
      */
     public function trackMostRecentPublishedMessage($aTypeName, $notification);
 }
