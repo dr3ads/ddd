@@ -1,13 +1,13 @@
 {
-    "name": "carlosbuenosvinos/ddd",
+    "name": "dr3ads/ddd",
     "description": "Domain-Driven Design PHP helper classes (Application Services, Transactions, Domain Events, etc.",
     "homepage": "https://leanpub.com/ddd-in-php",
     "license": "MIT",
     "authors": [
         {
-            "name": "Carlos Buenosvinos",
-            "email": "carlos.buenosvinos@gmail.com",
-            "homepage": "http://carlosbuenosvinos.com"
+            "name": "Arnel Basiliote",
+            "email": "arnel.basiliote@gmail.com",
+            "homepage": ""
         }
     ],
     "autoload": {
